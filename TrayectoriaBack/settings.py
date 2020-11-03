@@ -111,13 +111,24 @@ WSGI_APPLICATION = 'TrayectoriaBack.wsgi.application'
 #    }
 #} 
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'trayectoriadb',
+#        'USER': 'postgres',
+#        'PASSWORD': 'vivi12Rojo29SQL_BD',
+#        'HOST': '127.0.0.1',
+#        'PORT': '5432'
+#    }
+#}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'trayectoriadb',
-        'USER': 'postgres',
-        'PASSWORD': 'vivi12Rojo29SQL_BD',
-        'HOST': '127.0.0.1',
+        'NAME': 'd1m17sf6vj3013',
+        'USER': 'kqaqbkjcsoeoiy',
+        'PASSWORD': '209ebb03b2661e526b147c6e887ed12502b3bfefca3cb127559b9243643eb28e',
+        'HOST': 'ec2-34-231-56-78.compute-1.amazonaws.com',
         'PORT': '5432'
     }
 }
