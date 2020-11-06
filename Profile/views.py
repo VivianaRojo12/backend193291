@@ -3,17 +3,57 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 from rest_framework.views import APIView
-
+from rest_framework.response import Response
+from rest_framework import status
 #--------------------- MODELOS ----------------------
-from Profile.models import ProfileModel
+from Profile.models import ProfileModel, ProfileUser
+from Profile.serializers import ProfileModelSerializer, ProfileModelUserSerializer
 
 #--------------------- SERIALIZER -------------------
-from Profile.serializers import ProfileModelSerializers
 
 # Create your views here.
 class ProfileView(APIView):
-    def (self, request, format = None):
-        serializer = ProfileModelSerializers(data = request.data, context = {'request': request}) #Invocara una clase de tipo serializador
+    def post(self, request, format = None):
+        serializer = ProfileModelSerializer(data = request.data, context = {'request': request}) #Invocara una clase de tipo serializador
+        if (serializer.is_valid()):
+            serializer.save() 
+        return Response(serializer.data) 
+
+class ProfileUserView(APIView):
+    def post(self, request, format = None):
+        serializer = ProfileModelUserSerializer(data = request.data, context = {'request': request}) #Invocara una clase de tipo serializador
         if (serializer.is_valid()):
             serializer.save()
-            return Response(serializer.date)
+            return Response(serializer.data) 
+        return Response("FAIL")
+
+    def get(self, request, format = None):
+        user = ProfileUser.objects.all()
+        serializer = ProfileModelUserSerializer(user, many = True)
+        return Response(serializer.data)
+
+class ProfileUserViewTwo(APIView):
+   
+    def get_object(self, pk):
+        try:
+            return ProfileUser.objects.get(pk=pk)
+        except ProfileUser.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        user = self.get_object(pk)
+        serializer = ProfileModelUserSerializer(user)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        user = self.get_object(pk)
+        serializer = ProfileModelUserSerializer(user, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        user = self.get_object(pk)
+        user.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
