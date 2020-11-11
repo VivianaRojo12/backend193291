@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['backendpw.herokuapp.com']
+ALLOWED_HOSTS = [config('ALLOWED_HOSTS_2')]
 
 
 # Application definition
@@ -108,12 +108,12 @@ WSGI_APPLICATION = 'TrayectoriaBack.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': config('ENGINE'),
-        'NAME': config('NAME'),
-        'USER': config('USER'),
-        'PASSWORD': config('PASSWORD'),
-        'HOST': config('HOST'),
-        'PORT': config('PORT')
+        'ENGINE': config('ENGINE_L'),
+        'NAME': config('NAME_L'),
+        'USER': config('USER_L'),
+        'PASSWORD': config('PASSWORD_L'),
+        'HOST': config('HOST_L'),
+        'PORT': config('PORT_L')
     }
 }
 
