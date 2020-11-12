@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     'Register',
 ]
 
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 SITE_ID = 1
 
