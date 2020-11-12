@@ -1,9 +1,10 @@
 from django.urls import path, re_path
+from django.conf.urls import include
 
 from Register import views
 
 
 urlpatterns = [
-    url(r'^rest-auth/', include('rest_auth.urls')),
-    url(r'^rest-auth/registration/', include('rest_auth.registration.urls'))
+    re_path(r'^rest-auth/', include('rest_auth.urls')),
+    re_path(r'^rest-auth/registration/', include('rest_auth.registration.urls'))
 ]
