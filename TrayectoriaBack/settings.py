@@ -39,6 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    #Registration
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+    'rest_auth',
+    'allauth.socialaccount',
+
     # 'drf_yasg',
     'corsheaders',
     'rest_framework',
@@ -46,7 +54,10 @@ INSTALLED_APPS = [
 
     'Dashboard',
     'Profile',
+    'Register',
 ]
+
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 SITE_ID = 1
 
